@@ -5,6 +5,7 @@
     <div class="row">
         <div class="col-sm-12">
             <h3>Daftar buku</h3>
+            <span class="text-secondary"><p>* berikut daftar buku yang tersedia</p></span>
             <hr>
             @if (session('status'))
                 <div class="alert alert-success">
