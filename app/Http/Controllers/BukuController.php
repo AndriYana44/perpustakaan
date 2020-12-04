@@ -70,12 +70,14 @@ class BukuController extends Controller
     }
     public function search(Request $request) {
         $buku = $request->key;
+        $batas = 5;
+        $no = 1;
         $data = [
-            'no' => '1',
             'title' => 'search'
         ];
-        $data_buku = Buku::where('judul', 'like', '%'.$buku.'%')->get();
+        $data_buku = Buku::where('judul', 'like', '%'.$buku.'%')->simplePaginate($batas);
+        $jumlah_buku = $data_buku->count();
 
-        return view('buku.buku', compact('data_buku', 'data'));
+        return view('buku.buku', compact('no', 'data_buku', 'data', 'jumlah_buku'));
     }
 }
