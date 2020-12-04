@@ -5,7 +5,9 @@
     <div class="row">
         <div class="col-sm-12">
             <h3>Daftar buku</h3>
-            <span class="text-secondary"><p>* berikut daftar buku yang tersedia</p></span>
+            <span class="text-secondary">
+                <p>* berikut daftar buku yang tersedia</p>
+            </span>
             <hr>
             @if (session('status'))
                 <div class="alert alert-success">
@@ -55,7 +57,7 @@
                         <td class="text-center">{{ $data['no']++ }}</td>
                         <td>{{ $buku->judul }}</td>
                         <td>{{ $buku->penulis }}</td>
-                        <td class="text-center">{{ $buku->harga }}</td>
+                        <td class="text-center">Rp.{{ number_format($buku->harga) }}</td>
                         <td class="text-center">{{ $buku->tgl_terbit }}</td>
                         <td class="text-center">
                             <form class="d-inline" action="{{ route('buku.destroy', $buku->id) }}" method="POST">
@@ -143,7 +145,7 @@
             <div class="form-group">
                 <input class="form-control @error('tgl') is-invalid @enderror" value="{{ old('tgl') }}" type="date" placeholder="Tanggal Terbit" name="tgl">
                 @error('tgl')
-                <div id="validationServer03Feedback" class="invalid-feedback">{Tanggal Terbit harus diisi!</div>
+                <div id="validationServer03Feedback" class="invalid-feedback">Tanggal Terbit harus diisi!</div>
                 @enderror
             </div>
         </div>

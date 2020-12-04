@@ -27,14 +27,14 @@ class BukuController extends Controller
 
     public function store(Request $request) 
     {
-        $buku = new Buku;
-        
-        $request->validate([
-            'judul' => 'required',
-            'penulis' => 'required',
+        $this->validate($request, [
+            'judul' => 'required|string',
+            'penulis' => 'required|string',
             'harga' => 'required',
-            'tgl' => 'required'
+            'tgl' => 'required|date'
         ]);
+
+        $buku = new Buku;
         
         $buku->judul = $request->judul;
         $buku->penulis = $request->penulis;
