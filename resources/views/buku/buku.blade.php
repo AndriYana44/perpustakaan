@@ -54,7 +54,7 @@
                 <tbody>
                     @foreach($data_buku as $buku)
                     <tr>
-                        <td class="text-center">{{ $data['no']++ }}</td>
+                        <td class="text-center">{{ $no++ }}</td>
                         <td>{{ $buku->judul }}</td>
                         <td>{{ $buku->penulis }}</td>
                         <td class="text-center">Rp.{{ number_format($buku->harga) }}</td>
@@ -107,6 +107,16 @@
                     @endforeach
                 </tbody>
             </table>
+            <div class="row justify-content-end mt-4">
+                <div class="col-sm-6">
+                    <div class="">Jumlah Buku : {{ $jumlah_buku }}</div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="float-right">
+                        {{ $data_buku->links() }}
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </div>

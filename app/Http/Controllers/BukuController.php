@@ -17,12 +17,19 @@ class BukuController extends Controller
 
     public function buku()
     {
-        $data_buku = Buku::all()->sortBy('tgl_terbit');
+        $batas = 5;
+        $data_buku = Buku::orderBy('id', 'desc')->simplePaginate($batas);
+        $jumlah_buku = Buku::count();
+        if($data_buku->currentPage() == 1) {
+            $no = 1;
+        }else {
+            $no = ($data_buku->currentPage() * $batas) - $batas + 1;
+        };
+
         $data = [
-            'no' => '1',
             'title' => 'Data Buku'
         ];
-        return view('buku.buku', compact('data_buku', 'data'));
+        return view('buku.buku', compact('data', 'data_buku', 'jumlah_buku', 'no'));
     }
 
     public function store(Request $request) 
